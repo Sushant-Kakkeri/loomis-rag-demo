@@ -1,0 +1,27 @@
+LOOMIS ARMORED US — VAULT ACCESS POLICY v2.3
+Last updated: June 2026
+Owner: Security Compliance Team
+
+SECTION 1: ACCESS REQUIREMENTS
+Vault access requires two authorized personnel at all times.
+No exceptions apply for weekends, holidays, or after-hours shifts.
+Any deviation must be approved in writing by the Regional Security Director.
+Failure to comply may result in immediate termination and criminal prosecution.
+
+SECTION 2: AUTHORIZATION LEVELS
+All vault personnel must hold Level 3 clearance or above.
+Clearance is reviewed annually by the Security Director.
+Temporary clearance may be granted for a maximum of 30 days.
+Temporary clearance requires written approval from branch manager and security team.
+
+SECTION 3: CASH LIMITS
+Maximum vault cash holding is $50,000 per branch per day.
+Any amount exceeding $50,000 requires Regional Director approval.
+Cash counts must be verified by both personnel before vault is sealed.
+Discrepancies greater than $100 must be reported immediately to the Security Director.
+
+SECTION 4: DOCUMENTATION
+Form 7B must be completed before any vault access, no exceptions.
+Form 7B must be signed by both authorized personnel.
+Completed forms are retained for 7 years per SOX compliance requirements.
+Lost or damaged forms must be reported to compliance team within 24 hours.

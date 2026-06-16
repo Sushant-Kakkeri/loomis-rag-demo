@@ -1,0 +1,5 @@
+.env
+loomis_vectordb/
+__pycache__/
+*.pyc
+version_store.json

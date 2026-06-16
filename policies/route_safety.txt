@@ -1,0 +1,27 @@
+LOOMIS ARMORED US — ROUTE SAFETY MANUAL v3.0
+Last updated: June 2026
+Owner: Operations and Security
+
+SECTION 1: WEATHER CONDITIONS
+Routes are suspended when visibility drops below 0.5 miles.
+Routes are suspended when active flood warnings are in effect for the route area.
+Routes are suspended when wind speeds exceed 60mph.
+Regional Security Director must approve any route operation during weather warnings.
+
+SECTION 2: VEHICLE REQUIREMENTS
+All vehicles must pass daily safety inspection before deployment.
+Vehicles with any mechanical fault must be taken out of service immediately.
+Fuel level must be above 25% at all times during active routes.
+GPS tracking must be active and confirmed before route departure.
+
+SECTION 3: INCIDENT REPORTING
+All incidents must be reported to dispatch within 5 minutes of occurrence.
+Incident report Form IR-1 must be completed within 2 hours of incident.
+Photographs must be taken at the scene if safe to do so.
+Driver must not move vehicle until cleared by security team unless safety requires it.
+
+SECTION 4: SUSPICIOUS ACTIVITY
+Drivers must report any suspicious following vehicle immediately to dispatch.
+Do not attempt to confront or engage suspicious individuals.
+If threat is imminent, proceed to nearest police station.
+Emergency code BLUE activates immediate law enforcement response.
