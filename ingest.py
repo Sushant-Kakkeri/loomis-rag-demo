@@ -1,38 +1,53 @@
 """
-ingest.py — Load, chunk, embed, and store policy documents.
+ingest.py — Load, chunk, embed, and store policy documents in ChromaDB.
 Run once to build the vector store. Re-run when documents update.
+Smart re-indexing: skips unchanged files using MD5 hash comparison.
 """
 
 import os
+
+# Streamlit Cloud secrets support
+# When running on Streamlit Cloud, push secrets into environment variables
+# When running locally, load_dotenv() handles it — this block is safely skipped
+try:
+    import streamlit as st
+    for key, value in st.secrets.items():
+        os.environ[key] = str(value)
+except:
+    pass
+
+from dotenv import load_dotenv
+load_dotenv()
+
 import hashlib
 import json
 from pathlib import Path
 from datetime import datetime
-from dotenv import load_dotenv
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
-load_dotenv()
-
-CHROMA_PATH    = os.getenv("CHROMA_PATH", "./loomis_vectordb")
-DOCS_PATH      = os.getenv("DOCS_PATH",   "./policies")
+# ── Config from environment ───────────────────────────────────────────────────
+CHROMA_PATH     = os.getenv("CHROMA_PATH",     "./loomis_vectordb")
+DOCS_PATH       = os.getenv("DOCS_PATH",       "./policies")
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
-VERSION_STORE  = "./version_store.json"
+VERSION_STORE   = "./version_store.json"
 
-# Chunk size and overlap — tuned for policy documents
 CHUNK_SIZE    = 1000
-CHUNK_OVERLAP = 150   # 15% overlap
+CHUNK_OVERLAP = 150   # 15% overlap — prevents rules splitting across chunks
 
+
+# ── Utility functions ─────────────────────────────────────────────────────────
 
 def get_file_hash(filepath: str) -> str:
-    """MD5 hash — detects if file changed since last index."""
+    """MD5 hash of file content — changes when file changes."""
     with open(filepath, "rb") as f:
         return hashlib.md5(f.read()).hexdigest()
 
 
 def load_version_store() -> dict:
+    """Load record of what's currently indexed."""
     try:
         with open(VERSION_STORE, "r") as f:
             return json.load(f)
@@ -41,60 +56,64 @@ def load_version_store() -> dict:
 
 
 def save_version_store(store: dict):
+    """Save updated index record to disk."""
     with open(VERSION_STORE, "w") as f:
         json.dump(store, f, indent=2)
 
 
-def load_documents(docs_path: str) -> list[Document]:
-    """Load all .txt and .pdf files from the policies folder."""
-    documents = []
+def detect_category(filename: str) -> str:
+    """Tag document with category based on filename."""
+    name = filename.lower()
+    if "vault" in name:
+        return "vault_access"
+    elif "hr" in name or "handbook" in name or "employee" in name:
+        return "hr_policy"
+    elif "route" in name or "safety" in name or "dispatch" in name:
+        return "route_operations"
+    else:
+        return "general"
 
-    for filepath in Path(docs_path).glob("*"):
-        if filepath.suffix not in [".txt", ".pdf"]:
-            continue
 
-        if filepath.suffix == ".txt":
-            with open(filepath, "r", encoding="utf-8") as f:
-                content = f.read()
+# ── Core pipeline steps ───────────────────────────────────────────────────────
 
-        elif filepath.suffix == ".pdf":
+def load_document(filepath: Path) -> Document:
+    """Load a single .txt or .pdf file into a LangChain Document."""
+    category = detect_category(filepath.name)
+
+    if filepath.suffix == ".txt":
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read()
+
+    elif filepath.suffix == ".pdf":
+        try:
             from pypdf import PdfReader
             reader  = PdfReader(str(filepath))
             content = ""
             for page_num, page in enumerate(reader.pages):
                 content += f"\n[Page {page_num + 1}]\n"
                 content += page.extract_text() or ""
+        except ImportError:
+            print("pypdf not installed. Run: pip install pypdf")
+            return None
+    else:
+        return None
 
-        # Detect document category from filename
-        filename_lower = filepath.name.lower()
-        if "vault" in filename_lower:
-            category = "vault_access"
-        elif "hr" in filename_lower or "handbook" in filename_lower:
-            category = "hr_policy"
-        elif "route" in filename_lower or "safety" in filename_lower:
-            category = "route_operations"
-        else:
-            category = "general"
-
-        documents.append(Document(
-            page_content = content,
-            metadata     = {
-                "source":       filepath.name,
-                "category":     category,
-                "file_path":    str(filepath),
-                "indexed_at":   datetime.now().isoformat(),
-            }
-        ))
-
-        print(f"Loaded: {filepath.name} ({category})")
-
-    return documents
+    return Document(
+        page_content = content,
+        metadata     = {
+            "source":     filepath.name,
+            "category":   category,
+            "file_path":  str(filepath),
+            "indexed_at": datetime.now().isoformat(),
+        }
+    )
 
 
-def chunk_documents(documents: list[Document]) -> list[Document]:
+def chunk_documents(documents: list) -> list:
     """
-    Split documents into chunks.
-    RecursiveCharacterTextSplitter respects sentence boundaries.
+    Split documents into overlapping chunks.
+    RecursiveCharacterTextSplitter tries paragraph → sentence → word breaks.
+    Never cuts mid-sentence when possible.
     """
     splitter = RecursiveCharacterTextSplitter(
         chunk_size         = CHUNK_SIZE,
@@ -110,54 +129,57 @@ def chunk_documents(documents: list[Document]) -> list[Document]:
     for i, chunk in enumerate(chunks):
         chunk.metadata["chunk_idx"] = i
 
-    print(f"\nChunked into {len(chunks)} chunks")
+    print(f"Chunked into {len(chunks)} chunks")
     print(f"Chunk size: {CHUNK_SIZE} chars | Overlap: {CHUNK_OVERLAP} chars")
     return chunks
 
 
-def build_vector_store(chunks: list[Document]) -> Chroma:
+def build_vector_store(chunks: list) -> Chroma:
     """Embed chunks and store in ChromaDB."""
-
     print(f"\nLoading embedding model: {EMBEDDING_MODEL}")
-    print("(Runs on CPU — no GPU needed, no data leaves network)")
+    print("Runs on CPU — no GPU needed, no data leaves network")
 
     embeddings = HuggingFaceEmbeddings(
-        model_name      = EMBEDDING_MODEL,
-        model_kwargs    = {"device": "cpu"},
-        encode_kwargs   = {"normalize_embeddings": True}
+        model_name    = EMBEDDING_MODEL,
+        model_kwargs  = {"device": "cpu"},
+        encode_kwargs = {"normalize_embeddings": True}
     )
 
-    # Build vector store
     print(f"Embedding {len(chunks)} chunks and storing in ChromaDB...")
 
     vectorstore = Chroma.from_documents(
-        documents          = chunks,
-        embedding          = embeddings,
-        persist_directory  = CHROMA_PATH,
-        collection_name    = "loomis_policies"
+        documents         = chunks,
+        embedding         = embeddings,
+        persist_directory = CHROMA_PATH,
+        collection_name   = "loomis_policies"
     )
 
+    count = vectorstore._collection.count()
     print(f"Vector store built at: {CHROMA_PATH}")
-    print(f"Total chunks indexed: {vectorstore._collection.count()}")
+    print(f"Total chunks indexed:  {count}")
 
     return vectorstore
 
 
+# ── Smart ingestion — only re-index changed files ─────────────────────────────
+
 def smart_ingest():
     """
-    Only re-index documents that changed since last run.
-    Prevents duplicate chunks — detects via file hash.
+    Main ingestion function.
+    Checks file hashes — only processes files that changed since last run.
+    Prevents duplicate chunks in ChromaDB.
     """
-    print("=" * 50)
+    print("=" * 55)
     print("LOOMIS RAG — DOCUMENT INGESTION")
-    print("=" * 50)
+    print("=" * 55)
 
+    docs_path     = Path(DOCS_PATH)
     version_store = load_version_store()
     changed_files = []
     skipped_files = []
 
     # Check which files need re-indexing
-    for filepath in Path(DOCS_PATH).glob("*"):
+    for filepath in docs_path.glob("*"):
         if filepath.suffix not in [".txt", ".pdf"]:
             continue
 
@@ -178,42 +200,23 @@ def smart_ingest():
         print("\nAll documents up to date. Nothing to re-index.")
         return
 
-    # Load only changed files
+    # Load changed files
     docs_to_index = []
     for filepath in changed_files:
-        if filepath.suffix == ".txt":
-            with open(filepath, "r") as f:
-                content = f.read()
-        else:
-            from pypdf import PdfReader
-            reader  = PdfReader(str(filepath))
-            content = "".join(
-                page.extract_text() or ""
-                for page in reader.pages
-            )
+        print(f"Loading: {filepath.name}")
+        doc = load_document(filepath)
+        if doc:
+            docs_to_index.append(doc)
+            print(f"  → {doc.metadata['category']} | {len(doc.page_content)} chars")
 
-        filename_lower = filepath.name.lower()
-        category = (
-            "vault_access"    if "vault"    in filename_lower else
-            "hr_policy"       if "hr"       in filename_lower else
-            "route_operations" if "route"   in filename_lower else
-            "general"
-        )
-
-        docs_to_index.append(Document(
-            page_content = content,
-            metadata     = {
-                "source":     filepath.name,
-                "category":   category,
-                "indexed_at": datetime.now().isoformat(),
-            }
-        ))
+    if not docs_to_index:
+        print("No valid documents found.")
+        return
 
     # Chunk
     chunks = chunk_documents(docs_to_index)
 
-    # Store — Chroma handles deduplication by collection
-    # For production: delete old chunks for changed files first
+    # Build vector store
     build_vector_store(chunks)
 
     # Update version store
@@ -224,8 +227,10 @@ def smart_ingest():
         }
 
     save_version_store(version_store)
+
     print("\nVersion store updated.")
     print("Ingestion complete.")
+    print("=" * 55)
 
 
 if __name__ == "__main__":
