@@ -2,6 +2,10 @@
 app.py — Streamlit UI for Loomis Policy Assistant.
 Run locally:  streamlit run app.py
 Deployed on:  Streamlit Cloud (share.streamlit.io)
+
+Features:
+- Chat tab: conversational Q&A with streaming responses
+- Audit Log tab: every query logged with source, safety, metadata
 """
 
 import os
@@ -24,9 +28,6 @@ from pathlib import Path
 
 
 # ── Auto-ingest if vector store doesn't exist ─────────────────────────────────
-# On Streamlit Cloud the filesystem resets on each cold start.
-# If the loomis_vectordb folder doesn't exist, run ingestion automatically.
-
 if not Path(os.getenv("CHROMA_PATH", "./loomis_vectordb")).exists():
     with st.spinner("Building knowledge base from policy documents..."):
         from ingest import smart_ingest
@@ -123,100 +124,211 @@ if "pending_question" not in st.session_state:
     st.session_state.pending_question = None
 
 
-# ── Chat history display ──────────────────────────────────────────────────────
+# ── Main tabs ─────────────────────────────────────────────────────────────────
 
-for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.write(msg["content"])
-
-        # Show source metadata for assistant messages
-        if msg["role"] == "assistant" and "metadata" in msg:
-            meta = msg["metadata"]
-            with st.expander("📋 Source details", expanded=False):
-                col1, col2, col3 = st.columns(3)
-                col1.metric("Chunks found", meta.get("chunks_found", 0))
-                col2.metric("Safety gate",  "✅ Passed" if meta.get("is_safe") else "⚠️ Blocked")
-                col3.metric("Quote check",  "✅ Verified" if meta.get("quote_verified") else "⚠️ Check")
-
-                if meta.get("sources"):
-                    st.write("**Source documents:**")
-                    for source in meta["sources"]:
-                        st.write(f"  • {source}")
-
-                st.write(f"**Model:** {meta.get('model', 'unknown')}")
+chat_tab, audit_tab = st.tabs(["💬 Chat", "📋 Audit Log"])
 
 
-# ── Handle input ──────────────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════════════════════
+# CHAT TAB
+# ══════════════════════════════════════════════════════════════════════════════
 
-# Get question from chat input or demo button
-question = st.chat_input("Ask a policy question...")
+with chat_tab:
 
-# Check for pending question from sidebar button
-if st.session_state.pending_question:
-    question = st.session_state.pending_question
-    st.session_state.pending_question = None
+    # Chat history display
+    for msg in st.session_state.messages:
+        with st.chat_message(msg["role"]):
+            st.write(msg["content"])
 
-if question:
-    # Add user message to history
-    st.session_state.messages.append({
-        "role":    "user",
-        "content": question
-    })
+            if msg["role"] == "assistant" and "metadata" in msg:
+                meta = msg["metadata"]
+                with st.expander("📋 Source details", expanded=False):
+                    col1, col2, col3 = st.columns(3)
+                    col1.metric("Chunks found", meta.get("chunks_found", 0))
+                    col2.metric("Safety gate",  "✅ Passed" if meta.get("is_safe") else "⚠️ Blocked")
+                    col3.metric("Quote check",  "✅ Verified" if meta.get("quote_verified") else "⚠️ Check")
 
-    with st.chat_message("user"):
-        st.write(question)
+                    if meta.get("sources"):
+                        st.write("**Source documents:**")
+                        for source in meta["sources"]:
+                            st.write(f"  • {source}")
 
-    # Determine category filter
-    category_filter = None if category == "All documents" else category
+                    st.write(f"**Model:** {meta.get('model', 'unknown')}")
 
-    # Generate answer
-    with st.chat_message("assistant"):
+    # Get question from chat input or demo button
+    question = st.chat_input("Ask a policy question...")
 
-        if use_streaming:
-            # Stream tokens in real time — typewriter effect
-            response_placeholder = st.empty()
-            full_response        = ""
+    if st.session_state.pending_question:
+        question = st.session_state.pending_question
+        st.session_state.pending_question = None
 
-            for chunk in stream_rag(question, category_filter):
-                full_response += chunk
-                response_placeholder.write(full_response + "▌")
+    if question:
+        st.session_state.messages.append({
+            "role":    "user",
+            "content": question
+        })
 
-            response_placeholder.write(full_response)
+        with st.chat_message("user"):
+            st.write(question)
 
-            # Run full pipeline separately to get metadata and safety check
-            result = run_rag(question, category_filter)
+        category_filter = None if category == "All documents" else category
 
-            # If safety gate failed — override the streamed answer
-            if not result["is_safe"]:
-                response_placeholder.write(result["answer"])
-                full_response = result["answer"]
+        with st.chat_message("assistant"):
 
-        else:
-            # Non-streaming — wait for full response
-            with st.spinner("Searching policy documents..."):
+            if use_streaming:
+                response_placeholder = st.empty()
+                full_response        = ""
+
+                for chunk in stream_rag(question, category_filter):
+                    full_response += chunk
+                    response_placeholder.write(full_response + "▌")
+
+                response_placeholder.write(full_response)
+
                 result = run_rag(question, category_filter)
 
-            st.write(result["answer"])
-            full_response = result["answer"]
-            result        = result
+                if not result["is_safe"]:
+                    response_placeholder.write(result["answer"])
+                    full_response = result["answer"]
 
-        # Show source details
-        with st.expander("📋 Source details", expanded=False):
-            col1, col2, col3 = st.columns(3)
-            col1.metric("Chunks found", result["chunks_found"])
-            col2.metric("Safety gate",  "✅ Passed" if result["is_safe"] else "⚠️ Blocked")
-            col3.metric("Quote check",  "✅ Verified" if result["quote_verified"] else "⚠️ Check")
+            else:
+                with st.spinner("Searching policy documents..."):
+                    result = run_rag(question, category_filter)
 
-            if result["sources"]:
-                st.write("**Source documents:**")
-                for source in result["sources"]:
-                    st.write(f"  • {source}")
+                st.write(result["answer"])
+                full_response = result["answer"]
 
-            st.write(f"**Model:** {result['model']}")
+            with st.expander("📋 Source details", expanded=False):
+                col1, col2, col3 = st.columns(3)
+                col1.metric("Chunks found", result["chunks_found"])
+                col2.metric("Safety gate",  "✅ Passed" if result["is_safe"] else "⚠️ Blocked")
+                col3.metric("Quote check",  "✅ Verified" if result["quote_verified"] else "⚠️ Check")
 
-        # Save to conversation history
-        st.session_state.messages.append({
-            "role":     "assistant",
-            "content":  full_response,
-            "metadata": result
-        })
+                if result["sources"]:
+                    st.write("**Source documents:**")
+                    for source in result["sources"]:
+                        st.write(f"  • {source}")
+
+                st.write(f"**Model:** {result['model']}")
+
+            st.session_state.messages.append({
+                "role":     "assistant",
+                "content":  full_response,
+                "metadata": result
+            })
+
+        st.rerun()
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# AUDIT LOG TAB
+# ══════════════════════════════════════════════════════════════════════════════
+
+with audit_tab:
+
+    st.subheader("Session Audit Log")
+    st.caption(
+        "Every query logged with source document, chunks retrieved, "
+        "safety gate result, and quote verification. "
+        "In production this writes to an immutable PostgreSQL database "
+        "retained for 7 years per SOX compliance requirements."
+    )
+
+    # Build query/response pairs from message history
+    queries  = []
+    messages = st.session_state.messages
+
+    for i, msg in enumerate(messages):
+        if msg["role"] == "user":
+            if i + 1 < len(messages):
+                response = messages[i + 1]
+                if response["role"] == "assistant":
+                    meta = response.get("metadata", {})
+                    queries.append({
+                        "index":          len(queries) + 1,
+                        "question":       msg["content"],
+                        "answer":         response["content"],
+                        "sources":        meta.get("sources",        []),
+                        "chunks_found":   meta.get("chunks_found",   0),
+                        "safety_passed":  meta.get("is_safe",        True),
+                        "quote_verified": meta.get("quote_verified", True),
+                        "model":          meta.get("model",          "unknown"),
+                    })
+
+    if not queries:
+        st.info(
+            "No queries yet. Go to the **💬 Chat** tab and ask a question — "
+            "every interaction will appear here automatically."
+        )
+
+    else:
+        # Summary metrics
+        total    = len(queries)
+        safe     = sum(1 for q in queries if q["safety_passed"])
+        blocked  = total - safe
+        verified = sum(1 for q in queries if q["quote_verified"])
+
+        col1, col2, col3, col4 = st.columns(4)
+        col1.metric("Total queries",   total)
+        col2.metric("Safety passed",   safe)
+        col3.metric("Safety blocked",  blocked)
+        col4.metric("Quotes verified", verified)
+
+        st.divider()
+
+        # Most recent first
+        for record in reversed(queries):
+            safety_icon = "✅" if record["safety_passed"]  else "⚠️"
+            quote_icon  = "✅" if record["quote_verified"] else "⚠️"
+
+            question_preview = (
+                record["question"][:55] + "..."
+                if len(record["question"]) > 55
+                else record["question"]
+            )
+
+            label = f"{safety_icon} Query {record['index']}: {question_preview}"
+
+            # Expand most recent automatically
+            is_latest = record["index"] == len(queries)
+
+            with st.expander(label, expanded=is_latest):
+
+                c1, c2, c3 = st.columns(3)
+                c1.metric(
+                    "Safety Gate",
+                    "✅ Passed" if record["safety_passed"] else "⚠️ BLOCKED"
+                )
+                c2.metric(
+                    "Quote Verified",
+                    f"{quote_icon} {'Yes' if record['quote_verified'] else 'No'}"
+                )
+                c3.metric("Chunks Retrieved", record["chunks_found"])
+
+                st.write("**Question asked:**")
+                st.info(record["question"])
+
+                st.write("**Answer returned:**")
+                if record["safety_passed"]:
+                    st.success(
+                        record["answer"][:400] +
+                        ("..." if len(record["answer"]) > 400 else "")
+                    )
+                else:
+                    st.warning(record["answer"])
+
+                st.write("**Source documents retrieved:**")
+                if record["sources"]:
+                    for source in record["sources"]:
+                        st.write(f"  • `{source}`")
+                else:
+                    st.write("  No sources — question was out of scope")
+
+                st.write(f"**Model used:** `{record['model']}`")
+
+                st.divider()
+                st.caption(
+                    "In production: employee ID, timestamp, token count, "
+                    "section, page number, and document version are also logged "
+                    "to an append-only database."
+                )
