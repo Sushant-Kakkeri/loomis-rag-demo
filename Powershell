@@ -1,0 +1,3 @@
+Install-Module -Name Microsoft.PowerApps.PowerShell -AllowClobber -Force -Scope CurrentUser
+Add-PowerAppsAccount
+Import-PowerAppsSolution -EnvironmentName "74b17ea5-2122-ead9-9e8e-298724bf3d10" -SolutionZipPath "$env:USERPROFILE\Downloads\LoomisFedBilling_1_0_0_16.zip"
