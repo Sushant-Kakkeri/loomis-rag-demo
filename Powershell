@@ -65,3 +65,43 @@ concat(
   'Do not claim financial approval, create files or submit to an API. ',
   'Return JSON only.'
 )
+
+
+and(
+  equals(
+    items('For_each_processing_unit')?['documentCategory'],
+    'repack'
+  ),
+  equals(
+    last(variables('AttachmentUnitResults'))?['unit']?['unitKey'],
+    items('For_each_processing_unit')?['unitKey']
+  ),
+  or(
+    equals(
+      last(variables('AttachmentUnitResults'))?['extraction']?['sourceReviewRequired'],
+      true
+    ),
+    equals(
+      last(variables('AttachmentUnitResults'))?['extraction']?['inspectionComplete'],
+      false
+    ),
+    greater(
+      length(
+        last(variables('AttachmentUnitResults'))?['extraction']?['exceptions']
+      ),
+      0
+    ),
+    and(
+      greater(
+        length(
+          last(variables('AttachmentUnitResults'))?['extraction']?['records']
+        ),
+        0
+      ),
+      equals(
+        last(variables('AttachmentUnitResults'))?['extraction']?['records'][0]?['denominationCoverageComplete'],
+        false
+      )
+    )
+  )
+)
