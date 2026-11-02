@@ -105,3 +105,14 @@ and(
     )
   )
 )
+
+
+setProperty(
+  setProperty(
+    json('{}'),
+    'Name',
+    outputs('Current_attachment_name')
+  ),
+  'ContentBytes',
+  outputs('Get_Attachment_(V2)')?['body/contentBytes']
+)
