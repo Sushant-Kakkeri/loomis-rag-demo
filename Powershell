@@ -107,6 +107,18 @@ and(
 )
 
 
+
+setProperty(
+  setProperty(
+    union(json('{}'), first(body('Build_API_deposit_header'))),
+    'Depositors', body('Build_API_depositors')
+  ),
+  'Support', outputs('Build_API_deposit_support')
+)
+
+
+
+
 setProperty(
   setProperty(
     json('{}'),
@@ -115,4 +127,23 @@ setProperty(
   ),
   'ContentBytes',
   outputs('Get_Attachment_(V2)')?['body/contentBytes']
+)
+
+
+-----
+setProperty(
+  setProperty(
+    union(json('{}'), first(body('Build_API_deposit_header'))),
+    'Depositors', body('Build_API_depositors')
+  ),
+  'Support', outputs('Build_API_deposit_support')
+)
+
+
+setProperty(
+  setProperty(
+    union(json('{}'), first(body('Build_API_order_header'))),
+    'OrderDetails', body('Build_API_order_locations')
+  ),
+  'Support', outputs('Build_API_order_support')
 )
