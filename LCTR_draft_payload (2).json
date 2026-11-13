@@ -1,0 +1,1372 @@
+{
+  "_DRAFT_NOTICE": "DEMO DRAFT. Values in <<REQUIRED: ...>> are not on the source documents. Remove this key before any real submission.",
+  "fileHeader": {
+    "submittingReportingEntityNumber": "<<REQUIRED: submitting RE number>>",
+    "reportingEntityBulkReference": "LCTR-DEMO-DRAFT.json"
+  },
+  "reports": [
+    {
+      "reportDetails": {
+        "reportTypeCode": 106,
+        "submitTypeCode": 1,
+        "reportingEntityNumber": "<<REQUIRED: Loomis FINTRAC reporting entity number>>",
+        "submittingReportingEntityNumber": "<<REQUIRED: submitting RE number>>",
+        "reportingEntityReportReference": "YYZ-1057026-YYZ-1",
+        "twentyFourHourRule": {
+          "aggregationTypeCode": "<<REQUIRED: 1-4; decision pending compliance>>",
+          "periodStart": "<<REQUIRED: 24h window start, yyyy-mm-ddThh:mm:ss-zz:zz>>",
+          "periodEnd": "<<REQUIRED: 24h window end>>"
+        },
+        "activitySectorCode": 23,
+        "reportingEntityContactId": "<<REQUIRED: contact ID on file with FINTRAC>>"
+      },
+      "definitions": [
+        {
+          "typeCode": 4,
+          "refId": "ENT-P03",
+          "nameOfEntity": "National Money Mart Company",
+          "addressTypeCode": 1,
+          "address": {
+            "buildingNumber": "2585",
+            "streetAddress": "Victoria Park Ave",
+            "city": "Scarborough",
+            "provinceStateCode": "ON",
+            "postalZipCode": "M1T1A4",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        },
+        {
+          "typeCode": 4,
+          "refId": "ENT-P02",
+          "nameOfEntity": "TRAVELEX CANADA LIMITED",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "700",
+            "buildingNumber": "390",
+            "streetAddress": "Bay St",
+            "city": "Toronto",
+            "provinceStateCode": "ON",
+            "postalZipCode": "M5H2Y2",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        }
+      ],
+      "transactions": [
+        {
+          "reportingEntityLocationId": "<<REQUIRED: Loomis location ID registered with FINTRAC>>",
+          "largeCashTransactionDetails": {
+            "thresholdIndicator": true,
+            "reportingEntityTransactionReference": "YYZ-1057026-YYZ-1-T1",
+            "dateTimeOfTransaction": "<<REQUIRED: actual receipt time with offset; scheduled pickup window start 2026-05-11T10:00:00-04:00>>",
+            "methodCode": "<<REQUIRED: code for armoured car - not verified>>"
+          },
+          "startingActions": [
+            {
+              "details": {
+                "amount": "56000.00",
+                "currencyCode": "EUR",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "8550.00",
+                "currencyCode": "USD",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "28625.00",
+                "currencyCode": "GBP",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "88000.00",
+                "currencyCode": "AUD",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "10000.00",
+                "currencyCode": "BRL",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "14650.00",
+                "currencyCode": "CHF",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "70000.00",
+                "currencyCode": "CNY",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "43500.00",
+                "currencyCode": "HKD",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "2000000.00",
+                "currencyCode": "INR",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "775000.00",
+                "currencyCode": "JPY",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "25000.00",
+                "currencyCode": "MXN",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "10000.00",
+                "currencyCode": "NZD",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "500000.00",
+                "currencyCode": "PHP",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "10950.00",
+                "currencyCode": "SGD",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P03",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            }
+          ],
+          "completingActions": [
+            {
+              "details": {
+                "dispositionCode": "<<REQUIRED: disposition decision (likely 11 Other)>>",
+                "dispositionOther": "Transport of cash to consignee under Loomis delivery order YYZ-1057026-YYZ-1",
+                "valueInCanadianDollars": "355381.21",
+                "involvementIndicator": "<<REQUIRED: true/false>>"
+              },
+              "involvements": [],
+              "beneficiaries": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P02",
+                  "details": {
+                    "relationshipOfConductorCode": "<<REQUIRED: relationship code>>"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reportDetails": {
+        "reportTypeCode": 106,
+        "submitTypeCode": 1,
+        "reportingEntityNumber": "<<REQUIRED: Loomis FINTRAC reporting entity number>>",
+        "submittingReportingEntityNumber": "<<REQUIRED: submitting RE number>>",
+        "reportingEntityReportReference": "YYZ-1057030-YYZ-1",
+        "twentyFourHourRule": {
+          "aggregationTypeCode": "<<REQUIRED: 1-4; decision pending compliance>>",
+          "periodStart": "<<REQUIRED: 24h window start, yyyy-mm-ddThh:mm:ss-zz:zz>>",
+          "periodEnd": "<<REQUIRED: 24h window end>>"
+        },
+        "activitySectorCode": 23,
+        "reportingEntityContactId": "<<REQUIRED: contact ID on file with FINTRAC>>"
+      },
+      "definitions": [
+        {
+          "typeCode": 4,
+          "refId": "ENT-P01",
+          "nameOfEntity": "Travelex Canada Limited",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "4400",
+            "buildingNumber": "390",
+            "streetAddress": "Bay St",
+            "city": "Toronto",
+            "provinceStateCode": "ON",
+            "postalZipCode": "M5J2T3",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        },
+        {
+          "typeCode": 4,
+          "refId": "ENT-P04",
+          "nameOfEntity": "Sultan Financial Services Inc",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "101",
+            "buildingNumber": "2395",
+            "streetAddress": "Cawthra Road",
+            "city": "Mississauga",
+            "provinceStateCode": "ON",
+            "postalZipCode": "L5A2W8",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        }
+      ],
+      "transactions": [
+        {
+          "reportingEntityLocationId": "<<REQUIRED: Loomis location ID registered with FINTRAC>>",
+          "largeCashTransactionDetails": {
+            "thresholdIndicator": true,
+            "reportingEntityTransactionReference": "YYZ-1057030-YYZ-1-T1",
+            "dateTimeOfTransaction": "<<REQUIRED: actual receipt time with offset; scheduled pickup window start 2026-05-08T16:00:00-04:00>>",
+            "methodCode": "<<REQUIRED: code for armoured car - not verified>>"
+          },
+          "startingActions": [
+            {
+              "details": {
+                "amount": "50000.00",
+                "currencyCode": "EUR",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P01",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "50000.00",
+                "currencyCode": "USD",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P01",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            }
+          ],
+          "completingActions": [
+            {
+              "details": {
+                "dispositionCode": "<<REQUIRED: disposition decision (likely 11 Other)>>",
+                "dispositionOther": "Transport of cash to consignee under Loomis delivery order YYZ-1057030-YYZ-1",
+                "valueInCanadianDollars": "149055.00",
+                "involvementIndicator": "<<REQUIRED: true/false>>"
+              },
+              "involvements": [],
+              "beneficiaries": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P04",
+                  "details": {
+                    "relationshipOfConductorCode": "<<REQUIRED: relationship code>>"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reportDetails": {
+        "reportTypeCode": 106,
+        "submitTypeCode": 1,
+        "reportingEntityNumber": "<<REQUIRED: Loomis FINTRAC reporting entity number>>",
+        "submittingReportingEntityNumber": "<<REQUIRED: submitting RE number>>",
+        "reportingEntityReportReference": "YYZ-1057061-YYZ-1",
+        "twentyFourHourRule": {
+          "aggregationTypeCode": "<<REQUIRED: 1-4; decision pending compliance>>",
+          "periodStart": "<<REQUIRED: 24h window start, yyyy-mm-ddThh:mm:ss-zz:zz>>",
+          "periodEnd": "<<REQUIRED: 24h window end>>"
+        },
+        "activitySectorCode": 23,
+        "reportingEntityContactId": "<<REQUIRED: contact ID on file with FINTRAC>>"
+      },
+      "definitions": [
+        {
+          "typeCode": 4,
+          "refId": "ENT-P01",
+          "nameOfEntity": "Travelex Canada Limited",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "4400",
+            "buildingNumber": "390",
+            "streetAddress": "Bay St",
+            "city": "Toronto",
+            "provinceStateCode": "ON",
+            "postalZipCode": "M5J2T3",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        },
+        {
+          "typeCode": 4,
+          "refId": "ENT-P05",
+          "nameOfEntity": "Interchange Financial Corporation",
+          "addressTypeCode": 1,
+          "address": {
+            "buildingNumber": "5617",
+            "streetAddress": "Yonge Street",
+            "city": "North York",
+            "provinceStateCode": "ON",
+            "postalZipCode": "M2M3S9",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        }
+      ],
+      "transactions": [
+        {
+          "reportingEntityLocationId": "<<REQUIRED: Loomis location ID registered with FINTRAC>>",
+          "largeCashTransactionDetails": {
+            "thresholdIndicator": true,
+            "reportingEntityTransactionReference": "YYZ-1057061-YYZ-1-T1",
+            "dateTimeOfTransaction": "<<REQUIRED: actual receipt time with offset; scheduled pickup window start 2026-05-08T16:00:00-04:00>>",
+            "methodCode": "<<REQUIRED: code for armoured car - not verified>>"
+          },
+          "startingActions": [
+            {
+              "details": {
+                "amount": "30000.00",
+                "currencyCode": "CNY",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P01",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "2000000.00",
+                "currencyCode": "JPY",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P01",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "5000000.00",
+                "currencyCode": "KRW",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P01",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "200000.00",
+                "currencyCode": "TRY",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P01",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "53000.00",
+                "currencyCode": "EUR",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P01",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            },
+            {
+              "details": {
+                "amount": "2500.00",
+                "currencyCode": "GBP",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P01",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            }
+          ],
+          "completingActions": [
+            {
+              "details": {
+                "dispositionCode": "<<REQUIRED: disposition decision (likely 11 Other)>>",
+                "dispositionOther": "Transport of cash to consignee under Loomis delivery order YYZ-1057061-YYZ-1",
+                "valueInCanadianDollars": "125706.37",
+                "involvementIndicator": "<<REQUIRED: true/false>>"
+              },
+              "involvements": [],
+              "beneficiaries": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P05",
+                  "details": {
+                    "relationshipOfConductorCode": "<<REQUIRED: relationship code>>"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reportDetails": {
+        "reportTypeCode": 106,
+        "submitTypeCode": 1,
+        "reportingEntityNumber": "<<REQUIRED: Loomis FINTRAC reporting entity number>>",
+        "submittingReportingEntityNumber": "<<REQUIRED: submitting RE number>>",
+        "reportingEntityReportReference": "YYZ-1057065-YYZ-1",
+        "twentyFourHourRule": {
+          "aggregationTypeCode": "<<REQUIRED: 1-4; decision pending compliance>>",
+          "periodStart": "<<REQUIRED: 24h window start, yyyy-mm-ddThh:mm:ss-zz:zz>>",
+          "periodEnd": "<<REQUIRED: 24h window end>>"
+        },
+        "activitySectorCode": 23,
+        "reportingEntityContactId": "<<REQUIRED: contact ID on file with FINTRAC>>"
+      },
+      "definitions": [
+        {
+          "typeCode": 4,
+          "refId": "ENT-P01",
+          "nameOfEntity": "Travelex Canada Limited",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "4400",
+            "buildingNumber": "390",
+            "streetAddress": "Bay St",
+            "city": "Toronto",
+            "provinceStateCode": "ON",
+            "postalZipCode": "M5J2T3",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        },
+        {
+          "typeCode": 4,
+          "refId": "ENT-P06",
+          "nameOfEntity": "Money Exchange World / 2093808 Ontario Inc.",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "4",
+            "buildingNumber": "700",
+            "streetAddress": "Burnhamthorpe Road West",
+            "city": "Mississauga",
+            "provinceStateCode": "ON",
+            "postalZipCode": "L5C2R9",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        }
+      ],
+      "transactions": [
+        {
+          "reportingEntityLocationId": "<<REQUIRED: Loomis location ID registered with FINTRAC>>",
+          "largeCashTransactionDetails": {
+            "thresholdIndicator": true,
+            "reportingEntityTransactionReference": "YYZ-1057065-YYZ-1-T1",
+            "dateTimeOfTransaction": "<<REQUIRED: actual receipt time with offset; scheduled pickup window start 2026-05-08T16:00:00-04:00>>",
+            "methodCode": "<<REQUIRED: code for armoured car - not verified>>"
+          },
+          "startingActions": [
+            {
+              "details": {
+                "amount": "36000.00",
+                "currencyCode": "EUR",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P01",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            }
+          ],
+          "completingActions": [
+            {
+              "details": {
+                "dispositionCode": "<<REQUIRED: disposition decision (likely 11 Other)>>",
+                "dispositionOther": "Transport of cash to consignee under Loomis delivery order YYZ-1057065-YYZ-1",
+                "valueInCanadianDollars": "58396.87",
+                "involvementIndicator": "<<REQUIRED: true/false>>"
+              },
+              "involvements": [],
+              "beneficiaries": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P06",
+                  "details": {
+                    "relationshipOfConductorCode": "<<REQUIRED: relationship code>>"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reportDetails": {
+        "reportTypeCode": 106,
+        "submitTypeCode": 1,
+        "reportingEntityNumber": "<<REQUIRED: Loomis FINTRAC reporting entity number>>",
+        "submittingReportingEntityNumber": "<<REQUIRED: submitting RE number>>",
+        "reportingEntityReportReference": "YYZ-1057066-YYZ-1",
+        "twentyFourHourRule": {
+          "aggregationTypeCode": "<<REQUIRED: 1-4; decision pending compliance>>",
+          "periodStart": "<<REQUIRED: 24h window start, yyyy-mm-ddThh:mm:ss-zz:zz>>",
+          "periodEnd": "<<REQUIRED: 24h window end>>"
+        },
+        "activitySectorCode": 23,
+        "reportingEntityContactId": "<<REQUIRED: contact ID on file with FINTRAC>>"
+      },
+      "definitions": [
+        {
+          "typeCode": 4,
+          "refId": "ENT-P07",
+          "nameOfEntity": "Money Exchange World / 2093808 Ontario Inc.",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "4",
+            "buildingNumber": "7171",
+            "streetAddress": "Goreway Dr",
+            "city": "Mississauga",
+            "provinceStateCode": "ON",
+            "postalZipCode": "L4T2T5",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        },
+        {
+          "typeCode": 4,
+          "refId": "ENT-P02",
+          "nameOfEntity": "TRAVELEX CANADA LIMITED",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "700",
+            "buildingNumber": "390",
+            "streetAddress": "Bay St",
+            "city": "Toronto",
+            "provinceStateCode": "ON",
+            "postalZipCode": "M5H2Y2",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        }
+      ],
+      "transactions": [
+        {
+          "reportingEntityLocationId": "<<REQUIRED: Loomis location ID registered with FINTRAC>>",
+          "largeCashTransactionDetails": {
+            "thresholdIndicator": true,
+            "reportingEntityTransactionReference": "YYZ-1057066-YYZ-1-T1",
+            "dateTimeOfTransaction": "<<REQUIRED: actual receipt time with offset; scheduled pickup window start 2026-05-11T10:00:00-04:00>>",
+            "methodCode": "<<REQUIRED: code for armoured car - not verified>>"
+          },
+          "startingActions": [
+            {
+              "details": {
+                "amount": "115380.00",
+                "currencyCode": "CAD",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P07",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            }
+          ],
+          "completingActions": [
+            {
+              "details": {
+                "dispositionCode": "<<REQUIRED: disposition decision (likely 11 Other)>>",
+                "dispositionOther": "Transport of cash to consignee under Loomis delivery order YYZ-1057066-YYZ-1",
+                "valueInCanadianDollars": "115380.00",
+                "involvementIndicator": "<<REQUIRED: true/false>>"
+              },
+              "involvements": [],
+              "beneficiaries": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P02",
+                  "details": {
+                    "relationshipOfConductorCode": "<<REQUIRED: relationship code>>"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reportDetails": {
+        "reportTypeCode": 106,
+        "submitTypeCode": 1,
+        "reportingEntityNumber": "<<REQUIRED: Loomis FINTRAC reporting entity number>>",
+        "submittingReportingEntityNumber": "<<REQUIRED: submitting RE number>>",
+        "reportingEntityReportReference": "BOFA-26272-84832",
+        "twentyFourHourRule": {
+          "aggregationTypeCode": "<<REQUIRED: 1-4; decision pending compliance>>",
+          "periodStart": "<<REQUIRED: 24h window start, yyyy-mm-ddThh:mm:ss-zz:zz>>",
+          "periodEnd": "<<REQUIRED: 24h window end>>"
+        },
+        "activitySectorCode": 23,
+        "reportingEntityContactId": "<<REQUIRED: contact ID on file with FINTRAC>>"
+      },
+      "definitions": [
+        {
+          "typeCode": 4,
+          "refId": "ENT-P08",
+          "nameOfEntity": "Bank of America N.A. Canada Branch c/o BRINK Canada",
+          "addressTypeCode": 1,
+          "address": {
+            "buildingNumber": "95",
+            "streetAddress": "Browns Line",
+            "city": "Etobicoke",
+            "provinceStateCode": "ON",
+            "postalZipCode": "M8W3S2",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        },
+        {
+          "typeCode": 4,
+          "refId": "ENT-P02",
+          "nameOfEntity": "TRAVELEX CANADA LIMITED",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "700",
+            "buildingNumber": "390",
+            "streetAddress": "Bay St",
+            "city": "Toronto",
+            "provinceStateCode": "ON",
+            "postalZipCode": "M5H2Y2",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        }
+      ],
+      "transactions": [
+        {
+          "reportingEntityLocationId": "<<REQUIRED: Loomis location ID registered with FINTRAC>>",
+          "largeCashTransactionDetails": {
+            "thresholdIndicator": true,
+            "reportingEntityTransactionReference": "BOFA-26272-84832-T1",
+            "dateTimeOfTransaction": "<<REQUIRED: actual receipt time with offset; scheduled pickup window start 2026-09-29T00:00:00-04:00>>",
+            "methodCode": "<<REQUIRED: code for armoured car - not verified>>"
+          },
+          "startingActions": [
+            {
+              "details": {
+                "amount": "1900000.00",
+                "currencyCode": "MXN",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P08",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            }
+          ],
+          "completingActions": [
+            {
+              "details": {
+                "dispositionCode": "<<REQUIRED: disposition decision (likely 11 Other)>>",
+                "dispositionOther": "Transport of cash to consignee under contract 26272-84832",
+                "valueInCanadianDollars": "151240.00",
+                "involvementIndicator": "<<REQUIRED: true/false>>"
+              },
+              "involvements": [],
+              "beneficiaries": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P02",
+                  "details": {
+                    "relationshipOfConductorCode": "<<REQUIRED: relationship code>>"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reportDetails": {
+        "reportTypeCode": 106,
+        "submitTypeCode": 1,
+        "reportingEntityNumber": "<<REQUIRED: Loomis FINTRAC reporting entity number>>",
+        "submittingReportingEntityNumber": "<<REQUIRED: submitting RE number>>",
+        "reportingEntityReportReference": "DBB-2627851067",
+        "twentyFourHourRule": {
+          "aggregationTypeCode": "<<REQUIRED: 1-4; decision pending compliance>>",
+          "periodStart": "<<REQUIRED: 24h window start, yyyy-mm-ddThh:mm:ss-zz:zz>>",
+          "periodEnd": "<<REQUIRED: 24h window end>>"
+        },
+        "activitySectorCode": 23,
+        "reportingEntityContactId": "<<REQUIRED: contact ID on file with FINTRAC>>"
+      },
+      "definitions": [
+        {
+          "typeCode": 4,
+          "refId": "ENT-P09",
+          "nameOfEntity": "DEUTSCHE BUNDESBANK/LANDESZENTRAL BANK, MAINZ BRANCH OFFICE",
+          "addressTypeCode": 1,
+          "address": {
+            "buildingNumber": "65",
+            "streetAddress": "Hegelstrasse",
+            "city": "Mainz",
+            "postalZipCode": "55122",
+            "countryCode": "DE",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        },
+        {
+          "typeCode": 4,
+          "refId": "ENT-P08",
+          "nameOfEntity": "Bank of America N.A. Canada Branch c/o BRINK Canada",
+          "addressTypeCode": 1,
+          "address": {
+            "buildingNumber": "95",
+            "streetAddress": "Browns Line",
+            "city": "Etobicoke",
+            "provinceStateCode": "ON",
+            "postalZipCode": "M8W3S2",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        }
+      ],
+      "transactions": [
+        {
+          "reportingEntityLocationId": "<<REQUIRED: Loomis location ID registered with FINTRAC>>",
+          "largeCashTransactionDetails": {
+            "thresholdIndicator": true,
+            "reportingEntityTransactionReference": "DBB-2627851067-T1",
+            "dateTimeOfTransaction": "<<REQUIRED: actual receipt time with offset; scheduled pickup window start 2026-10-07T00:00:00-04:00>>",
+            "methodCode": "<<REQUIRED: code for armoured car - not verified>>"
+          },
+          "startingActions": [
+            {
+              "details": {
+                "amount": "5850000.00",
+                "currencyCode": "EUR",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P09",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            }
+          ],
+          "completingActions": [
+            {
+              "details": {
+                "dispositionCode": "<<REQUIRED: disposition decision (likely 11 Other)>>",
+                "dispositionOther": "Transport of cash to consignee under authorization REF 2627851067",
+                "valueInCanadianDollars": "9360492.57",
+                "involvementIndicator": "<<REQUIRED: true/false>>"
+              },
+              "involvements": [],
+              "beneficiaries": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P08",
+                  "details": {
+                    "relationshipOfConductorCode": "<<REQUIRED: relationship code>>"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reportDetails": {
+        "reportTypeCode": 106,
+        "submitTypeCode": 1,
+        "reportingEntityNumber": "<<REQUIRED: Loomis FINTRAC reporting entity number>>",
+        "submittingReportingEntityNumber": "<<REQUIRED: submitting RE number>>",
+        "reportingEntityReportReference": "NUMISMA-TD-005308",
+        "twentyFourHourRule": {
+          "aggregationTypeCode": "<<REQUIRED: 1-4; decision pending compliance>>",
+          "periodStart": "<<REQUIRED: 24h window start, yyyy-mm-ddThh:mm:ss-zz:zz>>",
+          "periodEnd": "<<REQUIRED: 24h window end>>"
+        },
+        "activitySectorCode": 23,
+        "reportingEntityContactId": "<<REQUIRED: contact ID on file with FINTRAC>>"
+      },
+      "definitions": [
+        {
+          "typeCode": 4,
+          "refId": "ENT-P10",
+          "nameOfEntity": "Numisma Bank",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "101",
+            "buildingNumber": "1",
+            "streetAddress": "Sound Shore Drive",
+            "city": "Greenwich",
+            "provinceStateCode": "CT",
+            "postalZipCode": "06830",
+            "countryCode": "US",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        },
+        {
+          "typeCode": 4,
+          "refId": "ENT-P11",
+          "nameOfEntity": "Continental Currency Exchange Canada Ltd",
+          "addressTypeCode": 1,
+          "address": {
+            "unitNumber": "1",
+            "buildingNumber": "411",
+            "streetAddress": "Confederation Pkwy",
+            "city": "Concord",
+            "provinceStateCode": "ON",
+            "postalZipCode": "L4K0A8",
+            "countryCode": "CA",
+            "typeCode": 1
+          },
+          "telephoneNumber": "<<REQUIRED: entity telephone>>",
+          "natureOfPrincipalBusiness": "<<REQUIRED: nature of principal business>>",
+          "identifications": [
+            {
+              "identifierTypeCode": "<<REQUIRED: ID type code (entity list)>>",
+              "number": "<<REQUIRED: ID number>>",
+              "jurisdictionOfIssueCountryCode": "<<REQUIRED: country>>"
+            }
+          ],
+          "registrationIncorporationIndicator": "<<REQUIRED: true/false>>",
+          "registrationsIncorporations": [],
+          "authorizedPersons": []
+        }
+      ],
+      "transactions": [
+        {
+          "reportingEntityLocationId": "<<REQUIRED: Loomis location ID registered with FINTRAC>>",
+          "largeCashTransactionDetails": {
+            "thresholdIndicator": true,
+            "reportingEntityTransactionReference": "NUMISMA-TD-005308-T1",
+            "dateTimeOfTransaction": "<<REQUIRED: actual receipt time with offset; scheduled pickup window start 2026-10-09T00:00:00-04:00>>",
+            "methodCode": "<<REQUIRED: code for armoured car - not verified>>"
+          },
+          "startingActions": [
+            {
+              "details": {
+                "amount": "1680000.00",
+                "currencyCode": "USD",
+                "sourceOfCashIndicator": "<<REQUIRED: true/false>>",
+                "depositToBusinessAccountIndicator": "<<REQUIRED: true/false>>"
+              },
+              "sourcesOfCash": [],
+              "conductors": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P10",
+                  "details": {
+                    "onBehalfOfIndicator": "<<REQUIRED: third-party determination>>"
+                  },
+                  "onBehalfOfs": []
+                }
+              ]
+            }
+          ],
+          "completingActions": [
+            {
+              "details": {
+                "dispositionCode": "<<REQUIRED: disposition decision (likely 11 Other)>>",
+                "dispositionOther": "Transport of cash to consignee under authorization deal TD-005308",
+                "valueInCanadianDollars": "2395176.00",
+                "involvementIndicator": "<<REQUIRED: true/false>>"
+              },
+              "involvements": [],
+              "beneficiaries": [
+                {
+                  "typeCode": 4,
+                  "refId": "ENT-P11",
+                  "details": {
+                    "relationshipOfConductorCode": "<<REQUIRED: relationship code>>"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
